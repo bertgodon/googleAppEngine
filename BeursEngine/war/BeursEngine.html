@@ -1,62 +1,36 @@
-<!doctype html>
-<!-- The DOCTYPE declaration above will set the     -->
-<!-- browser's rendering engine into                -->
-<!-- "Standards Mode". Replacing this declaration   -->
-<!-- with a "Quirks Mode" doctype is not supported. -->
-
-<html>
+<html lang="en" ng-app="beursApp">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
-    <!--                                                               -->
-    <!-- Consider inlining CSS to reduce the number of requested files -->
-    <!--                                                               -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="BeursEngine.css">
+    <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 
-    <!--                                           -->
-    <!-- Any title is fine                         -->
-    <!--                                           -->
     <title>BeursFeesje 2014</title>
     
-    <!--                                           -->
-    <!-- This script loads your compiled module.   -->
-    <!-- If you add any GWT meta tags, they must   -->
-    <!-- be added before this line.                -->
-    <!--                                           -->
-    <script type="text/javascript" language="javascript" src="beursengine/beursengine.nocache.js"></script>
   </head>
-
-  <!--                                           -->
-  <!-- The body can have arbitrary html, or      -->
-  <!-- you can leave the body empty if you want  -->
-  <!-- to create a completely dynamic UI.        -->
-  <!--                                           -->
   <body>
-
-    <!-- OPTIONAL: include this if you want history support -->
-    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
-    
-    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
-    <noscript>
-      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled
-        in order for this application to display correctly.
-      </div>
-    </noscript>
-
+	<div ng-show="is_backend_ready">
+		<h2>Google Endpoint are ready</h2>
+	</div>
     <h1>BeursFeesje 2014</h1>
-
-    <table align="center">
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
-      </tr>
-      <tr>
-        <td id="nameFieldContainer"></td>
-        <td id="sendButtonContainer"></td>
-      </tr>
-      <tr>
-        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
-      </tr>
-    </table>
+	<div class="container  theme-showcase" ng-controller="beursController as beurs">
+		<p>AngularJs is runnung</p>
+		<div ng-repeat="drink in beurs.drinks" >
+			<section >
+				<img ng-src="{{drink.imageUrl}}">
+	      		<h4>{{drink.name}}</h4>
+	      		<blockquote>{{drink.price | currency}}</blockquote>
+	 		</section>
+	 	</div>
+	</div>
+	
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+  	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js" ></script>
+  	<script type="text/javascript" src="js/angular.min.js" ></script>
+  	<script type="text/javascript" src="js/beurs/beursApp.js"></script>
+  	<script src="https://apis.google.com/js/client.js?onload=init"></script>
   </body>
+  
 </html>

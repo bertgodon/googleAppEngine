@@ -1,18 +1,31 @@
 package be.bert.googleappengine.model;
 
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+import java.math.BigDecimal;
 
-@PersistenceCapable
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Beverage {
 
-	@PrimaryKey
-	@Persistent	private String name;
-	@Persistent	private float price;
-	@Persistent private float miniumPrice;
-	@Persistent private int weight;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name;
+	private float price;
+	private float miniumPrice;
+	private float recommendedPrice;
+	private boolean soldOut;
+	private int weight;
 
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -30,6 +43,18 @@ public class Beverage {
 	}
 	public void setMiniumPrice(float miniumPrice) {
 		this.miniumPrice = miniumPrice;
+	}
+	public float getRecommendedPrice() {
+		return recommendedPrice;
+	}
+	public void setRecommendedPrice(float recommendedPrice) {
+		this.recommendedPrice = recommendedPrice;
+	}
+	public boolean isSoldOut() {
+		return soldOut;
+	}
+	public void setSoldOut(boolean soldOut) {
+		this.soldOut = soldOut;
 	}
 	public int getWeight() {
 		return weight;

@@ -1,0 +1,2 @@
+serviceClass: be.bert.googleappengine.client.GreetingService
+path: 761A956059C28586D0F70BDB0ED15BB9.gwt.rpc
