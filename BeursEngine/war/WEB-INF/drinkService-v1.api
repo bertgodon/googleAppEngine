@@ -24,19 +24,25 @@
     "maxAge" : 0
   },
   "methods" : {
-    "drinkService.getAllDrinks" : {
-      "path" : "beveragecollection",
-      "httpMethod" : "GET",
+    "drinkService.deleteById" : {
+      "path" : "byid/{id}",
+      "httpMethod" : "POST",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "be.bert.googleappengine.controller.BeursController.getAll",
+      "rosyMethod" : "be.bert.googleappengine.controller.DrinkService.deleteById",
       "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
         "body" : "empty"
       },
       "response" : {
-        "body" : "autoTemplate(backendResponse)"
+        "body" : "empty"
       }
     },
     "drinkService.add" : {
@@ -46,7 +52,7 @@
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "be.bert.googleappengine.controller.BeursController.addDrink",
+      "rosyMethod" : "be.bert.googleappengine.controller.DrinkService.addDrink",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -55,21 +61,30 @@
         "body" : "empty"
       }
     },
-    "drinkService.deleteById" : {
-      "path" : "byid/{id}",
-      "httpMethod" : "POST",
+    "drinkService.getAllDrinks" : {
+      "path" : "beveragecollection",
+      "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "be.bert.googleappengine.controller.BeursController.deleteById",
+      "rosyMethod" : "be.bert.googleappengine.controller.DrinkService.getAll",
       "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "drinkService.load" : {
+      "path" : "load",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "be.bert.googleappengine.controller.DrinkService.load",
+      "request" : {
         "body" : "empty"
       },
       "response" : {
@@ -124,17 +139,19 @@
       }
     },
     "methods" : {
-      "be.bert.googleappengine.controller.BeursController.getAll" : {
-        "response" : {
-          "$ref" : "BeverageCollection"
-        }
+      "be.bert.googleappengine.controller.DrinkService.deleteById" : {
       },
-      "be.bert.googleappengine.controller.BeursController.addDrink" : {
+      "be.bert.googleappengine.controller.DrinkService.addDrink" : {
         "request" : {
           "$ref" : "Beverage"
         }
       },
-      "be.bert.googleappengine.controller.BeursController.deleteById" : {
+      "be.bert.googleappengine.controller.DrinkService.getAll" : {
+        "response" : {
+          "$ref" : "BeverageCollection"
+        }
+      },
+      "be.bert.googleappengine.controller.DrinkService.load" : {
       }
     }
   }

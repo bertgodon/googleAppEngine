@@ -1,36 +1,45 @@
-<html lang="en" ng-app="beursApp">
+<html lang="en" ng-app="beursApp" >
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" rel="stylesheet" href="BeursEngine.css">
+<!--     <link type="text/css" rel="stylesheet" href="BeursEngine.css"> -->
     <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-
+  	<script type="text/javascript" src="js/angular.min.js" ></script>
+  	<script type="text/javascript" src="js/beurs/beursApp.js"></script>
+  	<script src="https://apis.google.com/js/client.js?onload=serviceInit"></script>
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+  	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js" ></script>  
     <title>BeursFeesje 2014</title>
     
   </head>
-  <body>
-	<div ng-show="is_backend_ready">
-		<h2>Google Endpoint are ready</h2>
+  <body role="document">
+
+	<div role="document" class="container-fluid theme-showcase" ng-controller="beursController as beurs" >
+		<div ng-show="is_backend_ready">
+			<h2>Google Endpoint are ready</h2>
+		</div>
+		<p>AngularJs is running</p>
+		<div class="container">
+			<div class="jumbotron">
+				<h1>BeursFeesje 2014</h1>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div ng-repeat="drink in drinks" class=col-md-6">
+					<blockquote>
+						<div class="section" ng-class="{ soldOut:{{drink.soldOut}} }" >
+				      		<h2>{{drink.name}}</h2>
+							<img ng-src="images/{{drink.name}}_small.jpg" alt="{{drink.name}} logo" class="img-responsive img-thumbnail">
+				      		<p>{{drink.price | currency: "€"}}</p>
+				 		</div>
+				 	</blockquote>
+			 	</div>
+			</div>
+		</div>
 	</div>
-    <h1>BeursFeesje 2014</h1>
-	<div class="container  theme-showcase" ng-controller="beursController as beurs">
-		<p>AngularJs is runnung</p>
-		<div ng-repeat="drink in beurs.drinks" >
-			<section >
-				<img ng-src="{{drink.imageUrl}}">
-	      		<h4>{{drink.name}}</h4>
-	      		<blockquote>{{drink.price | currency}}</blockquote>
-	 		</section>
-	 	</div>
-	</div>
-	
-	<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
-  	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js" ></script>
-  	<script type="text/javascript" src="js/angular.min.js" ></script>
-  	<script type="text/javascript" src="js/beurs/beursApp.js"></script>
-  	<script src="https://apis.google.com/js/client.js?onload=init"></script>
-  </body>
+</body>
   
 </html>

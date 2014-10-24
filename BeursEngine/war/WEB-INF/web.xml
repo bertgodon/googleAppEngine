@@ -22,7 +22,7 @@
     <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
     <init-param>
       <param-name>services</param-name>
-      <param-value>be.bert.googleappengine.controller.BeursController</param-value>
+      <param-value>be.bert.googleappengine.controller.DrinkService</param-value>
     </init-param>
   </servlet>
 

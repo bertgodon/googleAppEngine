@@ -3,7 +3,6 @@ package be.bert.googleappengine.controller;
 import java.util.List;
 
 import javax.inject.Named;
-import javax.jdo.PersistenceManager;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -17,7 +16,11 @@ import com.google.api.server.spi.config.ApiMethod;
 @Api(name = "drinkService",
 	version = "v1")
 @Named
-public class BeursController {
+public class DrinkService {
+	
+	@ApiMethod(name="load", httpMethod="GET")
+	public void load(){
+	}
 	
     @ApiMethod(name = "getAllDrinks", httpMethod="GET")
 	public List<Beverage> getAll(){
