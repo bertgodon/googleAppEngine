@@ -28,14 +28,8 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div ng-repeat="drink in drinks" class=col-md-6">
-					<blockquote>
-						<div class="section" ng-class="{ soldOut:{{drink.soldOut}} }" >
-				      		<h2>{{drink.name}}</h2>
-							<img ng-src="images/{{drink.name}}_small.jpg" alt="{{drink.name}} logo" class="img-responsive img-thumbnail">
-				      		<p>{{drink.price | currency: "€"}}</p>
-				 		</div>
-				 	</blockquote>
+				<div class="col-md-3" ng-repeat="drink in drinks" >
+				<bert></bert>
 			 	</div>
 			</div>
 		</div>

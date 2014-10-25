@@ -1,6 +1,6 @@
-var beursApp = angular.module('beursApp', []);
+var beursApp = angular.module('beursApp', [])
 
-	beursApp.controller('beursController', ['$scope', '$window', function ($scope, $window) {
+	.controller('beursController', ['$scope', '$window', function ($scope, $window) {
 	
 		$scope.is_backend_ready = false;
 		this.drinks = [];
@@ -25,7 +25,18 @@ var beursApp = angular.module('beursApp', []);
 	        });
 		};
 	}]);
-	
+	beursApp.directive('beurs-item', function(){
+		return {
+			restrict : 'E',
+			templateUrl : 'beurs-item.html'
+		};
+	});
+	beursApp.directive('bert', function(){
+		return {
+			restrict : 'E',
+			templateUrl : 'beurs-item.html'
+		};
+	});
 
 function serviceInit(){
     angular.element(document).ready(function() {
