@@ -1,7 +1,7 @@
 <div >
-	<div class="section" ng-class="{ active:drink.soldOut }" >
+	<div class="thumbnail" ng-class="{ active:drink.soldOut }" >
    		<h2>{{drink.name}}</h2>
-		<img ng-src="images/{{drink.name}}_small.jpg" alt="{{drink.name}} logo" class="img-responsive img-thumbnail">
+		<img ng-src="images/{{drink.name}}_small.jpg" alt="_small.jpg"  class="img-responsive img-thumbnail">
    		<blockquote>
    			<p>Actuele Prijs: {{drink.price | currency: "€"}}</p>
 	   		<p>Aanbevolen Prijs: {{drink.recommendedPrice | currency: "€"}}</p>
