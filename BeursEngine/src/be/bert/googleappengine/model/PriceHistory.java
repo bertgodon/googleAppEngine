@@ -2,23 +2,27 @@ package be.bert.googleappengine.model;
 
 import java.util.Date;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import com.google.appengine.api.datastore.Key;
-
-@PersistenceCapable
+@Entity
 public class PriceHistory {
 	
-	@PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Key key;
-	@Persistent private float price;
-	@Persistent private String name;
-	@Persistent private Date date;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private float price;
+	private String name;
+	private Date date;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public float getPrice() {
 		return price;
 	}

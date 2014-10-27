@@ -23,5 +23,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-aop-4.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-expression-4.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-2.3.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

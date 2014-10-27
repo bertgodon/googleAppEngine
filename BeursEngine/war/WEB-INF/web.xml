@@ -22,7 +22,7 @@
     <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
     <init-param>
       <param-name>services</param-name>
-      <param-value>be.bert.googleappengine.controller.DrinkService</param-value>
+      <param-value>be.bert.googleappengine.channel.ChannelAPIService,be.bert.googleappengine.controller.DrinkService</param-value>
     </init-param>
   </servlet>
 
@@ -31,4 +31,28 @@
     <url-pattern>/_ah/spi/*</url-pattern>
   </servlet-mapping>
 
+	<servlet>
+		<servlet-name>OpenedChannel</servlet-name>
+		<servlet-class>be.bert.googleappengine.channel.OpenedServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OpenedChannel</servlet-name>
+		<url-pattern>/opened/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+    	<servlet-name>PricesServlet</servlet-name>
+    	<servlet-class>be.bert.googleappengine.channel.OrderServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>PricesServlet</servlet-name>
+    	<url-pattern>/order/*</url-pattern>
+  	</servlet-mapping>
+  	<servlet>
+    	<servlet-name>CreateChannelServlet</servlet-name>
+    	<servlet-class>be.bert.googleappengine.channel.CreateChannelServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>CreateChannelServlet</servlet-name>
+    	<url-pattern>/create/*</url-pattern>
+  	</servlet-mapping>
 </web-app>
