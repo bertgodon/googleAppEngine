@@ -17,11 +17,11 @@
 					<td>{{item.drink.name}}</td>
 					<td>{{item.drink.price | number:2}}</td>
 					<td>
-						<button class="btn btn-primary" ng-click="plusOne(item)" >+1</button>
-						<button class="btn btn-primary" ng-click="plusFive(item)" >+5</button>
+						<button ng-disabled="loading" class="btn btn-primary" ng-click="plusOne(item)" >+1</button>
+						<button ng-disabled="loading" class="btn btn-primary" ng-click="plusFive(item)" >+5</button>
 					</td>
 					<td>
-						<input type="number" ng-model="item.quantity" step="1" size="3"/>
+						<input type="number" ng-model="item.quantity" step="1" size="3" ng-disabled="loading"/>
 					</td>
 					<td>
 						{{item.total | number:2 }} €
@@ -33,9 +33,10 @@
 		<p class="bg-primary">Totaal: {{order.totalAmount | number:2}} €</p>
 		<p class="bg-info">Vorige Totaal: {{order.previousAmount | number:2 }} €</p>
 				
-		
-		<button type="button" ng-click="sendOrder()" class="btn btn-success">Bereken</button>
-		<button type="button" ng-click="reset()" class="btn btn-danger">Reset</button>
-
+		<div>
+			<img class="sample-show-hide" ng-show="loading " src="images/load-indicator.gif" ></img>
+			<button ng-disabled="loading" type="button" ng-click="sendOrder()" class="btn btn-success">Bereken</button>
+			<button ng-disabled="loading" type="button" ng-click="reset()" class="btn btn-danger">Reset</button>
+		<div>
 	</div>
 </div>

@@ -3,6 +3,8 @@ var kassaController = angular.module('kassaController', []);
 
 kassaController.controller('kassaController', ['$scope', '$window', function ($scope, $window) {
 	$scope.is_backend_ready = false;
+	$scope.loading = false;
+
 	$scope.order;
 	$window.init= function() {
 		$scope.$apply($scope.load_orderservice_lib);
@@ -51,9 +53,12 @@ kassaController.controller('kassaController', ['$scope', '$window', function ($s
 		$scope.order.totalAmount = count;
 	}
 	$scope.sendOrder = function() {
+		$scope.loading = true;
+
 		gapi.client.orderendpoint.updateOrder($scope.order).execute(function(resp) {
             if (!resp.code) {
             	$scope.order = resp.result ;
+            	$scope.loading = false;
             	$scope.$apply();
             }
      });
