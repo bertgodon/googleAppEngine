@@ -1,10 +1,12 @@
-<div >
-	<div class="thumbnail" ng-class="{ active:drink.soldOut }" >
-   		<h2>{{drink.name}}</h2>
-		<img ng-src="images/{{drink.name}}_small.jpg" alt="_small.jpg"  class="img-responsive img-thumbnail">
+<div class="panel" ng-class="{ active:drink.soldOut }" >
+	<div class="panel-heading" >
+   		<h3>{{drink.name}}</h3>
+	</div>
+	<div class="panel-body">	
+		<img ng-src="images/{{drink.name}}_small.jpg" alt="images/_small.jpg"  class="center-block img-responsive img-thumbnail">
    		<blockquote>
-   			<p>Actuele Prijs: {{drink.price | currency: "€"}}</p>
-	   		<p>Aanbevolen Prijs: {{drink.recommendedPrice | currency: "€"}}</p>
+   			<small>Actuele Prijs: {{drink.price | currency: "€"}}</small>
+	   		<small>Aanbevolen Prijs: {{drink.recommendedPrice | currency: "€"}}</small>
 	   	</blockquote>
 	</div>
 </div>

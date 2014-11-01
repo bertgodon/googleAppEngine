@@ -46,7 +46,7 @@ public class OrderEndpoint {
 	
 	@ApiMethod(name = "updateOrder")
 	public Order updateOrder(Order order) {
-		System.out.println("updating order");
+//		System.out.println("updating order");
 		BeursPricesCalculater.calculateAlternative(order);
 		order.setPreviousAmount(order.getTotalAmount());
 		order.setTotalAmount(0);

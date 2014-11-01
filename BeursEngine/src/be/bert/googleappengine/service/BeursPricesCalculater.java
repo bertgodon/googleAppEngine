@@ -88,10 +88,10 @@ public class BeursPricesCalculater {
 		int weight = orderItem.getDrink().getWeight();
 		if(orderItem.getQuantity() > 0){
 			newPrice = oldPrice + (weight * aangekochteWaarde/totalWeight * orderItem.getQuantity()/totalQuantity);
-			System.out.println(newPrice +" = " +oldPrice +" + " +weight + " * " +aangekochteWaarde +" / " +totalWeight +" * " +orderItem.getQuantity()+ " / " +totalQuantity);
+//			System.out.println(newPrice +" = " +oldPrice +" + " +weight + " * " +aangekochteWaarde +" / " +totalWeight +" * " +orderItem.getQuantity()+ " / " +totalQuantity);
 		} else{
 			newPrice = oldPrice - (1/countNotSelledBeverages * weight * aangekochteWaarde/totalWeight);
-			System.out.println(newPrice + " = " +oldPrice + " - " +" 1" +" / " +countNotSelledBeverages +" * " +weight + " * " +aangekochteWaarde + " / " +totalWeight);
+//			System.out.println(newPrice + " = " +oldPrice + " - " +" 1" +" / " +countNotSelledBeverages +" * " +weight + " * " +aangekochteWaarde + " / " +totalWeight);
 		}
 		
 		return newPrice;
