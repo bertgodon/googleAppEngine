@@ -2,7 +2,7 @@
   "extends" : "thirdParty.api",
   "abstract" : false,
   "root" : "https://beursengine.appspot.com/_ah/api",
-  "name" : "drinkService",
+  "name" : "orderendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
@@ -23,52 +23,34 @@
     "type" : "no-cache",
     "maxAge" : 0
   },
+  "ownerDomain" : "bert.be",
+  "ownerName" : "bert.be",
+  "packagePath" : "googleappengine.model",
   "methods" : {
-    "drinkService.deleteById" : {
-      "path" : "byid/{id}",
-      "httpMethod" : "POST",
+    "orderendpoint.updateOrder" : {
+      "path" : "order",
+      "httpMethod" : "PUT",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "be.bert.googleappengine.controller.DrinkService.deleteById",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
-    "drinkService.add" : {
-      "path" : "addDrink",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "be.bert.googleappengine.controller.DrinkService.addDrink",
+      "rosyMethod" : "be.bert.googleappengine.model.OrderEndpoint.updateOrder",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
       },
       "response" : {
-        "body" : "empty"
+        "body" : "autoTemplate(backendResponse)"
       }
     },
-    "drinkService.getAllDrinks" : {
-      "path" : "beveragecollection",
+    "orderendpoint.getInitialOrder" : {
+      "path" : "order",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "be.bert.googleappengine.controller.DrinkService.getAll",
+      "rosyMethod" : "be.bert.googleappengine.model.OrderEndpoint.getInitialOrder",
       "request" : {
         "body" : "empty"
       },
@@ -79,6 +61,46 @@
   },
   "descriptor" : {
     "schemas" : {
+      "Order" : {
+        "id" : "Order",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "orderItems" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "OrderItem"
+            }
+          },
+          "totalAmount" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "previousAmount" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        }
+      },
+      "OrderItem" : {
+        "id" : "OrderItem",
+        "type" : "object",
+        "properties" : {
+          "total" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "quantity" : {
+            "type" : "integer"
+          },
+          "drink" : {
+            "$ref" : "Beverage"
+          }
+        }
+      },
       "Beverage" : {
         "id" : "Beverage",
         "type" : "object",
@@ -109,31 +131,20 @@
             "type" : "integer"
           }
         }
-      },
-      "BeverageCollection" : {
-        "id" : "BeverageCollection",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "Beverage"
-            }
-          }
-        }
       }
     },
     "methods" : {
-      "be.bert.googleappengine.controller.DrinkService.deleteById" : {
-      },
-      "be.bert.googleappengine.controller.DrinkService.addDrink" : {
+      "be.bert.googleappengine.model.OrderEndpoint.updateOrder" : {
         "request" : {
-          "$ref" : "Beverage"
+          "$ref" : "Order"
+        },
+        "response" : {
+          "$ref" : "Order"
         }
       },
-      "be.bert.googleappengine.controller.DrinkService.getAll" : {
+      "be.bert.googleappengine.model.OrderEndpoint.getInitialOrder" : {
         "response" : {
-          "$ref" : "BeverageCollection"
+          "$ref" : "Order"
         }
       }
     }

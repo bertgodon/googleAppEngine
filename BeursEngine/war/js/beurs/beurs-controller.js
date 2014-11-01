@@ -48,7 +48,6 @@ beursControllers.controller('beursController', ['$scope', '$window', function ($
 	};
 
 	function onOpened() {
-    	alert('onOpened');
         var path = '/opened';
         var xhr = new XMLHttpRequest();
         xhr.open('POST', path, true);
@@ -56,12 +55,18 @@ beursControllers.controller('beursController', ['$scope', '$window', function ($
       };
 
       function onMessage(message) {
-    	  var obj = JSON.parse(message.data);
-    	  alert("new message arrived: " +obj);
+    	  var order = JSON.parse(message.data);
+    	  for(var orderItem of order.orderItems){
+    		  for(var beverage of $scope.drinks){
+    			  if(beverage.id == orderItem.drink.id){
+    				  beverage.price = orderItem.drink.price;
+    			  }
+    		  }
+    	  }
+    	  $scope.$apply();
       };
      
       function openChannel(token) {
-    	  alert('openChannel/ token= ' +token);
         var channel = new goog.appengine.Channel(token);
         var handler = {
           'onopen': onOpened,

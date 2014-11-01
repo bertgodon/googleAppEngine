@@ -1,40 +1,41 @@
-<div role="document" class="container-fluid theme-showcase" ng-controller="kassaController as kassa" >
+<div role="document" class="container-fluid theme-showcase" ng-controller="kassaController" >
 	<h1>Bestellen</h1>
-	<div>
-		<div ng-show="is_backend_ready">
-			<h2>Google Endpoint are ready</h2>
-		</div>
-		<button type="button" ng-click="load_drinkservice_lib()" name="loadDrink" ></button>
-		<button type="button" ng-click="listDrinks()" name="loadAllDrink" ></button>
-		<button type="button" ng-click="sendOrder()" name="sendMessage" ></button>
-	</div>
-
+	
 	<div class="container">
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Naam</th>
 					<th>Prijs</th>
-					<th>Minimum prijs</th>
-					<th>Aangeraden prijs</th>
-					<th>Gewicht</th>
-					<th>Uitverkocht?</th>
+					<th>Aantal</th>
 					<th></th>
+					<th>Prijs</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="drink in drinks" >
-					<td><input type="text" ng-model="drink.name" placeholder="Naam"></input></td>
-					<td><input type="number" ng-model="drink.price" placeholder="Prijs"></input></td>
-					<td><input type="number" ng-model="drink.miniumPrice"></input></td>
-					<td><input type="number" ng-model="drink.recommendedPrice"></input></td>
-					<td><input type="number" ng-model="drink.weight"></input></td>
-					<td><input type="checkbox" ng-model="drink.soldOut" value="true"></td>
-					<td><button type="button" ng-click="update(drink)" class="btn btn-success">Update</button></td>
-					<td><button type="button" ng-click="deleteDrink(drink.id)" class="btn btn-danger">Delete</button></td>
+				<tr ng-repeat="item in order.orderItems">
+					<td>{{item.drink.name}}</td>
+					<td>{{item.drink.price | number:2}}</td>
+					<td>
+						<button class="btn btn-primary" ng-click="plusOne(item)" >+1</button>
+						<button class="btn btn-primary" ng-click="plusFive(item)" >+5</button>
+					</td>
+					<td>
+						<input type="number" ng-model="item.quantity" step="1" size="3"/>
+					</td>
+					<td>
+						{{item.total | number:2 }} €
+					</td>
+					<beurs-kassa-item></beurs-kassa-item>
 		 		</tr>
 		 	</tbody>
 		</table>
-		<button type="button" ng-click="createNew()" class="btn btn-primary">Add new</button>
+		<p class="bg-primary">Totaal: {{order.totalAmount | number:2}} €</p>
+		<p class="bg-info">Vorige Totaal: {{order.previousAmount | number:2 }} €</p>
+				
+		
+		<button type="button" ng-click="sendOrder()" class="btn btn-success">Bereken</button>
+		<button type="button" ng-click="reset()" class="btn btn-danger">Reset</button>
+
 	</div>
 </div>

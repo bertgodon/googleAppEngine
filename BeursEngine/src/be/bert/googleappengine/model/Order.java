@@ -13,7 +13,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private List<OrderItem> drinks;
+	private List<OrderItem> orderItems;
 	private float totalAmount;
 	private float previousAmount;
 
@@ -25,12 +25,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public List<OrderItem> getDrinks() {
-		return drinks;
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
 	}
 
-	public void setDrinks(List<OrderItem> drinks) {
-		this.drinks = drinks;
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 
 	public float getTotalAmount() {

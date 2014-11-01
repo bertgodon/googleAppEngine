@@ -18,16 +18,16 @@ import com.google.appengine.labs.repackaged.org.json.JSONObject;
 @Named
 public class ChannelController {
 
-	public void sendUpdateToOverView(List<Beverage> beverages){
-		ChannelService channelService = ChannelServiceFactory.getChannelService();
-  		channelService.sendMessage(new ChannelMessage(ChannelKeys.OVERVIEW_KEY, JSON.toString(beverages)));
-	}
-	
-	public void sendUpdateToOverView() throws JSONException{
-		DrinkService drinkService = new DrinkService();
-		ChannelService channelService = ChannelServiceFactory.getChannelService();
-		JSONObject message = new JSONObject("bert has send a message");
-
-		channelService.sendMessage(new ChannelMessage(ChannelKeys.OVERVIEW_KEY, message.toString()));
-	}
+//	public void sendUpdateToOverView(List<Beverage> beverages){
+//		ChannelService channelService = ChannelServiceFactory.getChannelService();
+//  		channelService.sendMessage(new ChannelMessage(ChannelKeys.OVERVIEW_KEY, JSON.toString(beverages)));
+//	}
+//	
+//	public void sendUpdateToOverView() throws JSONException{
+//		DrinkService drinkService = new DrinkService();
+//		ChannelService channelService = ChannelServiceFactory.getChannelService();
+//		JSONObject message = new JSONObject("bert has send a message");
+//
+//		channelService.sendMessage(new ChannelMessage(ChannelKeys.OVERVIEW_KEY, message.toString()));
+//	}
 }

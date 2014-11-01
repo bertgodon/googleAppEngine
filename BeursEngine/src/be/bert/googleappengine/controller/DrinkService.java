@@ -18,10 +18,6 @@ import com.google.api.server.spi.config.ApiMethod;
 @Named
 public class DrinkService {
 	
-	@ApiMethod(name="load", httpMethod="GET")
-	public void load(){
-	}
-	
     @ApiMethod(name = "getAllDrinks", httpMethod="GET")
 	public List<Beverage> getAll(){
         EntityManager em = PMF.get().createEntityManager();
