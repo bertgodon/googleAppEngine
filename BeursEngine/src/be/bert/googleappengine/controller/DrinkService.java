@@ -1,5 +1,6 @@
 package be.bert.googleappengine.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Named;
@@ -21,13 +22,15 @@ public class DrinkService {
     @ApiMethod(name = "getAllDrinks", httpMethod="GET")
 	public List<Beverage> getAll(){
         EntityManager em = PMF.get().createEntityManager();
+        List<Beverage> beverages = new ArrayList<Beverage>();
         try{
         	Query q = em.createQuery("select m from Beverage m");
-        	return q.getResultList();
+        	beverages =  q.getResultList();
         }
         finally{
         	em.close();
         }
+        return beverages;
 	}
     
     @ApiMethod(name = "add", httpMethod="POST")

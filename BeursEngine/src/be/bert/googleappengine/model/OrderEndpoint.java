@@ -50,14 +50,40 @@ public class OrderEndpoint {
 		BeursPricesCalculater.calculateAlternative(order);
 		order.setPreviousAmount(order.getTotalAmount());
 		order.setTotalAmount(0);
-		//persit
-		ChannelService channelService = ChannelServiceFactory.getChannelService();
+		updateBeverages(order);
 		Gson gson = new Gson();
+		ChannelService channelService = ChannelServiceFactory.getChannelService();
 		channelService.sendMessage(new ChannelMessage(ChannelKeys.OVERVIEW_KEY, gson.toJson(order)));
 		return order;
 	}
 
+	private void updateBeverages(Order order) {
+		for(OrderItem item : order.getOrderItems()){
+			EntityManager em = getEntityManager();
+			try{
+				if (!containsBeverage(item.getDrink())) {
+					throw new EntityNotFoundException("Object does not exist");
+				}
+				em.persist(item.getDrink());
+			} finally{
+				em.close();
+			}
+		}
+	}
 
+	private boolean containsBeverage(Beverage beverage) {
+		EntityManager mgr = getEntityManager();
+		boolean contains = true;
+		try {
+			Beverage item = mgr.find(Beverage.class, beverage.getId());
+			if (item == null) {
+				contains = false;
+			}
+		} finally {
+			mgr.close();
+		}
+		return contains;
+	}
 	private boolean containsOrder(Order order) {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
