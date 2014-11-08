@@ -34,9 +34,10 @@
 		<p class="bg-info">Vorige Totaal: {{order.previousAmount | number:2 }} €</p>
 				
 		<div>
-			<img class="sample-show-hide" ng-show="loading " src="images/load-indicator.gif" ></img>
+			<img class="sample-show-hide" ng-show="loading " src="images/load-indicator.gif"  style="height: 75px"></img>
 			<button ng-disabled="loading" type="button" ng-click="sendOrder()" class="btn btn-success">Bereken</button>
 			<button ng-disabled="loading" type="button" ng-click="reset()" class="btn btn-danger">Reset</button>
 		<div>
 	</div>
 </div>
+ <script src="https://apis.google.com/js/client.js?onload=serviceInit"></script>

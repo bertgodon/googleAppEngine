@@ -9,6 +9,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 
 import be.bert.googleappengine.channel.ChannelKeys;
+import be.bert.googleappengine.mapper.PriceHistoryMapper;
 import be.bert.googleappengine.service.BeursPricesCalculater;
 
 import com.google.api.server.spi.config.Api;
@@ -46,28 +47,52 @@ public class OrderEndpoint {
 	
 	@ApiMethod(name = "updateOrder")
 	public Order updateOrder(Order order) {
-//		System.out.println("updating order");
 		BeursPricesCalculater.calculateAlternative(order);
-		order.setPreviousAmount(order.getTotalAmount());
-		order.setTotalAmount(0);
-		updateBeverages(order);
-		Gson gson = new Gson();
-		ChannelService channelService = ChannelServiceFactory.getChannelService();
-		channelService.sendMessage(new ChannelMessage(ChannelKeys.OVERVIEW_KEY, gson.toJson(order)));
+
+		resetOrder(order);
+		sendChannelUpdate(order);
+		update(order);
+		
 		return order;
 	}
 
-	private void updateBeverages(Order order) {
-		for(OrderItem item : order.getOrderItems()){
-			EntityManager em = getEntityManager();
-			try{
-				if (!containsBeverage(item.getDrink())) {
-					throw new EntityNotFoundException("Object does not exist");
-				}
-				em.persist(item.getDrink());
-			} finally{
-				em.close();
+	private void resetOrder(Order order) {
+		order.setPreviousAmount(order.getTotalAmount());
+		order.setTotalAmount(0);
+	}
+
+	private void sendChannelUpdate(Order order) {
+		Gson gson = new Gson();
+		ChannelService channelService = ChannelServiceFactory.getChannelService();
+		channelService.sendMessage(new ChannelMessage(ChannelKeys.OVERVIEW_KEY, gson.toJson(order)));
+	}
+
+	private void updateHistory(OrderItem orderItem) {
+		PriceHistory history = PriceHistoryMapper.fromOrderItem(orderItem);
+		EntityManager em = getEntityManager();
+		try{
+			em.persist(history);
+		} finally{
+			em.close();
+		}
+	}
+
+	private void updateBeverage(OrderItem orderItem){
+		EntityManager em = getEntityManager();
+		try{
+			if (!containsBeverage(orderItem.getDrink())) {
+				throw new EntityNotFoundException("Object does not exist");
 			}
+			em.persist(orderItem.getDrink());
+		} finally{
+			em.close();
+		}
+	}
+	
+	private void update(Order order) {
+		for(OrderItem orderItem : order.getOrderItems()){
+			updateBeverage(orderItem);
+			updateHistory(orderItem);
 		}
 	}
 

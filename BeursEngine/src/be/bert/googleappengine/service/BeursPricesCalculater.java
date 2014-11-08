@@ -50,7 +50,7 @@ public class BeursPricesCalculater {
 			newPrice = oldPrice + (weight * aangekochteWaarde/totalWeight * orderItem.getQuantity()/totalQuantity/GLOBAL_WEIGHT_FACTOR);
 //			System.out.println(newPrice +" = " +oldPrice +" + " +weight + " * " +aangekochteWaarde +" / " +totalWeight +" * " +orderItem.getQuantity()+ " / " +totalQuantity);
 		} else{
-			newPrice = oldPrice - (1/countNotSelledBeverages * weight * aangekochteWaarde/totalWeight)/GLOBAL_WEIGHT_FACTOR;
+			newPrice = oldPrice - (1/countNotSelledBeverages * weight * aangekochteWaarde/totalWeight)/GLOBAL_WEIGHT_FACTOR * 2;
 //			System.out.println(newPrice + " = " +oldPrice + " - " +" 1" +" / " +countNotSelledBeverages +" * " +weight + " * " +aangekochteWaarde + " / " +totalWeight);
 		}
 		

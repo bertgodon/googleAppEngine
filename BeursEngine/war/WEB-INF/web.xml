@@ -19,7 +19,7 @@
     <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
     <init-param>
       <param-name>services</param-name>
-      <param-value>be.bert.googleappengine.channel.ChannelAPIService,be.bert.googleappengine.controller.DrinkService,be.bert.googleappengine.model.BeverageEndpoint,be.bert.googleappengine.model.OrderEndpoint</param-value>
+      <param-value>be.bert.googleappengine.channel.ChannelAPIService,be.bert.googleappengine.controller.DrinkService,be.bert.googleappengine.model.OrderEndpoint</param-value>
     </init-param>
   </servlet>
 

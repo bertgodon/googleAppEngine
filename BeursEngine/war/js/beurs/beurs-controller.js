@@ -3,6 +3,7 @@ var beursControllers = angular.module('beursController', []);
 var token = "";
 
 beursControllers.controller('beursController', ['$scope', '$window', function ($scope, $window) {
+	
 	$scope.is_backend_ready = false;
 	$scope.drinks = [];
 	$scope.update = function(drink) {
@@ -102,8 +103,6 @@ beursControllers.controller('beursController', ['$scope', '$window', function ($
 	
 	
 	function serviceInit(){
-	    angular.element(document).ready(function() {
-	    	window.init();
-	    });
+	    window.init();
 	};
 	
