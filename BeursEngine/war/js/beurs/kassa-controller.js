@@ -1,4 +1,4 @@
-
+"use strict";
 var kassaController = angular.module('kassaController', []);
 
 kassaController.controller('kassaController', ['$scope', '$window', function ($scope, $window) {

@@ -1,4 +1,5 @@
- <script type='text/javascript'>
+
+<script type='text/javascript'>
     var order = [];  
 
       updatePrices = function() {

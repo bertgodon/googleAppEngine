@@ -1,3 +1,5 @@
+"use strict";
+
 var beursControllers = angular.module('beursController', []);
 
 var token = "";

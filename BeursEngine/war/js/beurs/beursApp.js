@@ -1,3 +1,4 @@
+"use strict";
 var beursApp = angular.module('beursApp', ['ngRoute', 'beursController', 'kassaController']);
 
 beursApp.config(['$routeProvider',
