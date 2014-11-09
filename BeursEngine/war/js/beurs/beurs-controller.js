@@ -102,9 +102,3 @@ beursControllers.controller('beursController', ['$scope', '$window', function ($
 			templateUrl : 'html/beurs-item.html'
 		};
 	});
-	
-	
-	function serviceInit(){
-	    window.init();
-	};
-	
