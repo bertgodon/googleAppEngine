@@ -8,6 +8,7 @@ beursControllers.controller('beursController', ['$scope', '$window', function ($
 	
 	$scope.is_backend_ready = false;
 	$scope.drinks = [];
+	$scope.priceHistory = [];
 	$scope.update = function(drink) {
 		gapi.client.drinkService.add(drink).execute(function(){
 			listDrinks();
@@ -59,6 +60,8 @@ beursControllers.controller('beursController', ['$scope', '$window', function ($
 
       function onMessage(message) {
     	  var order = JSON.parse(message.data);
+    	  handleHistory(order);
+    	  
     	  for(var orderItem of order.orderItems){
     		  for(var beverage of $scope.drinks){
     			  if(beverage.id == orderItem.drink.id){
@@ -68,7 +71,9 @@ beursControllers.controller('beursController', ['$scope', '$window', function ($
     	  }
     	  $scope.$apply();
       };
-     
+      function handleHistory(order){
+    	  $scope.priceHistory = push(order);
+      };
       function openChannel(token) {
         var channel = new goog.appengine.Channel(token);
         var handler = {

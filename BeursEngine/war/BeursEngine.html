@@ -10,20 +10,18 @@
     <title>BeursFeesje 2014</title>
     
   </head>
-  <body role="document">
-  	<div ng-view></div>
+  <body role="document" >
+  	<div ng-view ng-cloak ></div>
   
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
     <script src='/_ah/channel/jsapi'></script>
+  	<script type="text/javascript" src="js/beurs/beursApp.js"></script>
+   	<script type="text/javascript" src="js/beurs/google-endpoints.js"></script>
  	<script type="text/javascript" src="js/beurs/beurs-controller.js"></script>
  	<script type="text/javascript" src="js/beurs/kassa-controller.js"></script>
-  	<script type="text/javascript" src="js/beurs/route.js"></script>
-  	<script type="text/javascript" src="js/beurs/beursApp.js"></script>
   	<script src="https://apis.google.com/js/client.js?onload=serviceInit"></script>
-  	
 	</body>
-  
 </html>
